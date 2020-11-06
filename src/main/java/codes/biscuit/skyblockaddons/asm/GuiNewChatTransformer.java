@@ -18,11 +18,17 @@ public class GuiNewChatTransformer implements ITransformer {
      */
     @Override
     public String[] getClassName() {
+        testPrint();
         return new String[]{TransformerClass.GuiNewChat.getTransformerName()};
+    }
+
+    public static void testPrint() {
+        System.out.println("TEST PRINT");
     }
 
     @Override
     public void transform(ClassNode classNode, String name) {
+        testPrint();
         for (MethodNode methodNode : classNode.methods) {
             if (TransformerMethod.printChatMessageWithOptionalDeletion.matches(methodNode)) {
 
@@ -31,6 +37,11 @@ public class GuiNewChatTransformer implements ITransformer {
                 // Replace With: GuiNewChatHook.getUnformattedText(chatComponent);
 
                 Iterator<AbstractInsnNode> iterator = methodNode.instructions.iterator();
+
+
+                methodNode.instructions.insertBefore(methodNode.instructions.getFirst(), new MethodInsnNode(Opcodes.INVOKESTATIC, "codes/biscuit/skyblockaddons/asm/GuiNewChatTransformer", "testPrint", "()V", false));
+
+
                 while (iterator.hasNext()) {
                     AbstractInsnNode abstractNode = iterator.next();
                     if (abstractNode instanceof MethodInsnNode && abstractNode.getOpcode() == Opcodes.INVOKEINTERFACE) {

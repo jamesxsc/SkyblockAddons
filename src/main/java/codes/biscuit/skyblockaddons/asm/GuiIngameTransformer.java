@@ -15,6 +15,7 @@ public class GuiIngameTransformer implements ITransformer {
 
     @Override
     public String[] getClassName() {
+        testPrint();
         return new String[]{TransformerClass.GuiIngame.getTransformerName()};
     }
 
@@ -24,6 +25,7 @@ public class GuiIngameTransformer implements ITransformer {
 
     @Override
     public void transform(ClassNode classNode, String name) {
+        testPrint();
         for (MethodNode methodNode : classNode.methods) {
             if (TransformerMethod.renderScoreboard.matches(methodNode)) {
 
