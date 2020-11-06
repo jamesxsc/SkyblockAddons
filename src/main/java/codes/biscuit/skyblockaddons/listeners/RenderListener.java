@@ -672,9 +672,11 @@ public class RenderListener {
         } else if (feature == Feature.HEALTH_TEXT) {
             text = getAttribute(Attribute.HEALTH) + "/" + getAttribute(Attribute.MAX_HEALTH);
 
+
         } else if (feature == Feature.EHP_TEXT) {
-            double effectiveHealth = getAttribute(Attribute.MAX_HEALTH) * (double) (getAttribute(Attribute.DEFENCE) / 100);
-            text = "EHP " + effectiveHealth;
+            int effectiveHealth = (int) (getAttribute(Attribute.HEALTH) * (double) (getAttribute(Attribute.DEFENCE) / 100));
+            int effectiveMaxHealth = (int) (getAttribute(Attribute.MAX_HEALTH) * (double) (getAttribute(Attribute.DEFENCE) / 100));
+            text = "EHP " + effectiveHealth + "/" + effectiveMaxHealth;
 
         } else if (feature == Feature.DEFENCE_TEXT) {
             text = String.valueOf(getAttribute(Attribute.DEFENCE));

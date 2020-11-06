@@ -36,7 +36,7 @@ public enum Feature {
     MANA_BAR(19, Message.SETTING_MANA_BAR, new GuiFeatureData(EnumUtils.DrawType.BAR, ColorCode.BLUE), false),
     MANA_TEXT(20, Message.SETTING_MANA_TEXT, new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.BLUE), false),
     HEALTH_BAR(21, Message.SETTING_HEALTH_BAR, new GuiFeatureData(EnumUtils.DrawType.BAR, ColorCode.RED), true, EnumUtils.FeatureSetting.CHANGE_BAR_COLOR_WITH_POTIONS),
-    EHP_TEXT(152, Message.SETTING_EHP_TEXT, new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.RED), true),
+    EHP_TEXT(152, Message.SETTING_EHP_TEXT, new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.DARK_RED), true),
     HEALTH_TEXT(22, Message.SETTING_HEALTH_TEXT, new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.RED), false),
     DEFENCE_ICON(23, Message.SETTING_DEFENCE_ICON, new GuiFeatureData(EnumUtils.DrawType.DEFENCE_ICON), false, EnumUtils.FeatureSetting.USE_VANILLA_TEXTURE),
     DEFENCE_TEXT(24, Message.SETTING_DEFENCE_TEXT, new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.GREEN), false),
