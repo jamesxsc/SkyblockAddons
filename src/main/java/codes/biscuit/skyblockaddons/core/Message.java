@@ -44,6 +44,7 @@ public enum Message {
     SETTING_SHOW_ONLY_WHEN_HOLDING_SHIFT(MessageObject.SETTING, "showOnlyWhenHoldingShift"),
     SETTING_MANA_BAR(MessageObject.SETTING, "manaBar"),
     SETTING_HEALTH_BAR(MessageObject.SETTING, "healthBar"),
+    SETTING_EHP_TEXT(MessageObject.SETTING, "ehpText"),
     SETTING_DEFENCE_ICON(MessageObject.SETTING, "defenceIcon"),
     SETTING_MANA_TEXT(MessageObject.SETTING, "manaText"),
     SETTING_HEALTH_TEXT(MessageObject.SETTING, "healthText"),
@@ -320,8 +321,7 @@ public enum Message {
     SUBCOMMAND_HELP_SLAYER(MessageObject.COMMAND_USAGE, "sba.help.slayer"),
     SUBCOMMAND_HELP_SUBCOMMAND_NOT_FOUND(MessageObject.COMMAND_USAGE, "sba.help.subCommandNotFound"),
 
-    KEY_DEVELOPER_COPY_NBT(MessageObject.KEYBINDINGS, "developerCopyNBT")
-    ;
+    KEY_DEVELOPER_COPY_NBT(MessageObject.KEYBINDINGS, "developerCopyNBT");
 
     private MessageObject messageObject;
     private String memberName;
@@ -346,7 +346,7 @@ public enum Message {
             if (text != null) {
                 if (this == Message.SETTING_BACKPACK_STYLE) {
                     text = text.replace("%style%", main.getConfigValues().getBackpackStyle().getMessage());
-                } else if(this == Message.SETTING_POWER_ORB_DISPLAY_STYLE) {
+                } else if (this == Message.SETTING_POWER_ORB_DISPLAY_STYLE) {
                     text = text.replace("%style%", main.getConfigValues().getPowerOrbDisplayStyle().getMessage());
                 } else if (this == Message.SETTING_GUI_SCALE) {
                     text = text.replace("%scale%", variables[0]);
@@ -364,7 +364,7 @@ public enum Message {
                 } else if (this == Message.UPDATE_MESSAGE_DOWNLOAD_FINISHED) {
                     text = text.replace("%file%", variables[0]);
                 } else if (this == Message.MESSAGE_ANVIL_USES) {
-                    text = text.replace("%uses%", main.getConfigValues().getRestrictedColor(Feature.SHOW_ITEM_ANVIL_USES)+variables[0]+ ColorCode.GRAY.toString());
+                    text = text.replace("%uses%", main.getConfigValues().getRestrictedColor(Feature.SHOW_ITEM_ANVIL_USES) + variables[0] + ColorCode.GRAY.toString());
                 } else if (this == Message.MESSAGE_ONLY_FEW_ARROWS_LEFT) {
                     text = text.replace("%arrows%", variables[0]);
                 } else if (this == Message.MESSAGE_STAGE) {
