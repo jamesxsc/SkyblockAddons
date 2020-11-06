@@ -147,6 +147,9 @@ public enum TransformerMethod {
 
     // WorldClient
     onEntityRemoved("onEntityRemoved", "func_72847_b", "b", "(Lnet/minecraft/entity/Entity;)V", "("+TransformerClass.Entity.getName()+")V"),
+
+    // GuiIngame
+    renderScoreboard("renderScoreboard", "func_180475_a", "a", "(Lnet/minecraft/scoreboard/ScoreObjective;Lnet/minecraft/client/gui/ScaledResolution;)V", "("+TransformerClass.ScoreObjective.getName()+TransformerClass.ScaledResolution.getName()+")V"),
     ;
 
     private String name;

@@ -63,7 +63,9 @@ public enum TransformerClass {
     EntityFX("net/minecraft/client/particle/EntityFX", "beb"),
     PotionEffect("net/minecraft/potion/PotionEffect", "pf"),
     WorldClient("net/minecraft/client/multiplayer/WorldClient", "bdb"),
-
+    GuiIngame("net/minecraft/client/gui/GuiIngame", "avo"),
+    ScoreObjective("net/minecraft/scoreboard/ScoreObjective", "auk"),
+    ScaledResolution("net/minecraft/client/gui/ScaledResolution", "avr"),
     ;
 
     private String name;
