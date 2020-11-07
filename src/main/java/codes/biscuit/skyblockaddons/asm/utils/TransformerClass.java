@@ -66,6 +66,7 @@ public enum TransformerClass {
     GuiIngame("net/minecraft/client/gui/GuiIngame", "avo"),
     ScoreObjective("net/minecraft/scoreboard/ScoreObjective", "auk"),
     ScaledResolution("net/minecraft/client/gui/ScaledResolution", "avr"),
+    Team("net/minecraft/scoreboard/Team", "auq")
     ;
 
     private String name;

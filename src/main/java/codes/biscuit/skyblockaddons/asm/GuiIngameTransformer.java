@@ -17,20 +17,27 @@ public class GuiIngameTransformer implements ITransformer {
 
     @Override
     public void transform(ClassNode classNode, String name) {
-        System.out.println("Transforming GuiIngame");
         for (MethodNode methodNode : classNode.methods) {
             if (TransformerMethod.renderScoreboard.matches(methodNode)) {
 
                 Iterator<AbstractInsnNode> iterator = methodNode.instructions.iterator();
+                int matchedNodes = 0;
                 while (iterator.hasNext()) {
                     AbstractInsnNode abstractNode = iterator.next();
 
-                    if ((abstractNode instanceof LdcInsnNode && ((LdcInsnNode) abstractNode).cst.equals(553648127))) {
-
-                        methodNode.instructions.insertBefore(abstractNode.getPrevious().getPrevious().getPrevious(), insertSlayerPercentage());
-                        break;
+//                    if ((abstractNode instanceof LdcInsnNode && ((LdcInsnNode) abstractNode).cst.equals(553648127))) {
+                    if ((abstractNode instanceof MethodInsnNode && ((MethodInsnNode) abstractNode).name.equals(TransformerMethod.formatPlayerName.getName()))) {
+                        matchedNodes++;
+                        System.out.println("Found call to method!");
+                        //                        methodNode.instructions.insertBefore(abstractNode.getPrevious().getPrevious().getPrevious(), insertSlayerPercentage());
+                        if (matchedNodes == 2) {
+                            System.out.println("Second call of method! (INJECTING)");
+                            methodNode.instructions.insert(abstractNode, insertSlayerPercentage());
+                            break;
+                        }
                     }
                 }
+                break;
             }
         }
     }
@@ -38,10 +45,10 @@ public class GuiIngameTransformer implements ITransformer {
     private InsnList insertSlayerPercentage() {
         InsnList list = new InsnList();
 
-        list.add(new VarInsnNode(Opcodes.ALOAD, 15)); // string with playername
+//        list.add(new VarInsnNode(Opcodes.ALOAD, 15)); // string with playername
         list.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "codes/biscuit/skyblockaddons/asm/hooks/GuiIngameHook", "insertSlayerPercentage",
                 "(Ljava/lang/String;)Ljava/lang/String;", false));
-        list.add(new VarInsnNode(Opcodes.ASTORE, 15));
+//        list.add(new VarInsnNode(Opcodes.ASTORE, 15));
 
         return list;
     }

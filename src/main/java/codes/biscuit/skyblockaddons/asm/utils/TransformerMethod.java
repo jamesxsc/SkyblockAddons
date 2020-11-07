@@ -150,6 +150,9 @@ public enum TransformerMethod {
 
     // GuiIngame
     renderScoreboard("renderScoreboard", "func_180475_a", "a", "(Lnet/minecraft/scoreboard/ScoreObjective;Lnet/minecraft/client/gui/ScaledResolution;)V", "("+TransformerClass.ScoreObjective.getName()+TransformerClass.ScaledResolution.getName()+")V"),
+
+    // ScorePlayerTeam
+    formatPlayerName("formatPlayerName", "func_96667_a", "a", "(Lnet/minecraft/scoreboard/Team;Ljava/lang/String;)Ljava/lang/String;", "("+TransformerClass.Team.getName()+"Ljava/lang/String;)ljava/lang/String;"),
     ;
 
     private String name;
