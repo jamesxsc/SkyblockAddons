@@ -11,7 +11,7 @@ public class GuiIngameHook {
     @SuppressWarnings("unused")
     public static String insertSlayerPercentage(String s) {
         Utils utils = SkyblockAddons.getInstance().getUtils();
-        if (!utils.isOnSkyblock() || SkyblockAddons.getInstance().getConfigValues().isDisabled(Feature.SLAYER_PERCENTAGE))
+        if (!utils.isOnSkyblock() || !SkyblockAddons.getInstance().getConfigValues().isEnabled(Feature.SLAYER_PERCENTAGE))
             return s;
 
         s = s.replace("\uD83C\uDF81", ""); // some strange chars causing isCorrectLine to be false
@@ -34,7 +34,7 @@ public class GuiIngameHook {
 
             double percent = 100 * num / den;
 
-            return "§c" + new DecimalFormat("#####.0").format(percent) + "§7%" + " " + split[1];
+            return "§c" + new DecimalFormat("#####.0").format(percent) + "§7%" + " " + split[1].replaceFirst("Combat X|Combat XP|Kills", "XP");
         } else
             return s;
     }
