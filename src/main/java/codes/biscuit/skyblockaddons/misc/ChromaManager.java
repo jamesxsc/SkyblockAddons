@@ -48,10 +48,19 @@ public class ChromaManager {
         float newHue = (x / 4F * chromaWidth + y / 4F * chromaWidth - ticks * chromaSpeed) % 1;
 
         if (currentHSB[2] < 0.3) { // Keep shadows as shadows
-            return main.getUtils().getColorWithAlpha(Color.HSBtoRGB(newHue, currentHSB[1], currentHSB[2]), alpha);
+            // todo bodged fix
+            return getColorWithAlpha(Color.HSBtoRGB(newHue, currentHSB[1], currentHSB[2]), alpha);
+//            return main.getUtils().getColorWithAlpha(Color.HSBtoRGB(newHue, currentHSB[1], currentHSB[2]), alpha);
         } else {
-            return main.getUtils().getColorWithAlpha(Color.HSBtoRGB(newHue, defaultColorHSB[1], defaultColorHSB[2]), alpha);
+            // todo bodged fix
+            return getColorWithAlpha(Color.HSBtoRGB(newHue, defaultColorHSB[1], defaultColorHSB[2]), alpha);
+//            return main.getUtils().getColorWithAlpha(Color.HSBtoRGB(newHue, defaultColorHSB[1], defaultColorHSB[2]), alpha);
         }
+    }
+
+    // todo bodged fix
+    public static int getColorWithAlpha(int color, int alpha) {
+        return (alpha << 24) | (color & 0x00FFFFFF);
     }
 
     /**
