@@ -17,6 +17,7 @@ public class GuiIngameTransformer implements ITransformer {
 
     @Override
     public void transform(ClassNode classNode, String name) {
+        System.out.println("Transforming GuiIngame");
         for (MethodNode methodNode : classNode.methods) {
             if (TransformerMethod.renderScoreboard.matches(methodNode)) {
 
@@ -24,9 +25,10 @@ public class GuiIngameTransformer implements ITransformer {
                 while (iterator.hasNext()) {
                     AbstractInsnNode abstractNode = iterator.next();
 
-                    if ((abstractNode instanceof LineNumberNode && ((LineNumberNode) abstractNode).line == 584)) {
+                    if ((abstractNode instanceof LdcInsnNode && ((LdcInsnNode) abstractNode).cst.equals(553648127))) {
 
-                        methodNode.instructions.insertBefore(abstractNode, insertSlayerPercentage());
+                        methodNode.instructions.insertBefore(abstractNode.getPrevious().getPrevious().getPrevious(), insertSlayerPercentage());
+                        break;
                     }
                 }
             }

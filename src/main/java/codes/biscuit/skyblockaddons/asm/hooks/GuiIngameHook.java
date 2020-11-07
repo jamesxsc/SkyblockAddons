@@ -15,21 +15,24 @@ public class GuiIngameHook {
             return s;
 
         s = s.replace("\uD83C\uDF81", ""); // some strange chars causing isCorrectLine to be false
+        s = s.replace("\uD83C\uDFC0", ""); // some strange chars causing double parsing to fail
 
         boolean doTransform = utils.getSlayerQuest() != null && !utils.isSlayerBossAlive();
         boolean isCorrectLine = s.contains("/") && (s.contains("Combat X") || s.contains("Kills"));
+
 
         if (doTransform && isCorrectLine) {
             String[] split = s.trim().split(" ", 2);
             String[] split1 = split[0].trim().split("/", 2);
 
-            double num = 0;
-            double den = 1; // cant be zero because math
+            double num;
+            double den; // cant be zero because math
             try {
                 num = Double.parseDouble(prepareParse(split1[0]));
                 den = Double.parseDouble(prepareParse(split1[1]));
             } catch (NumberFormatException ex) {
-
+                SkyblockAddons.getLogger().warn("[SkyblockAddons] Slayer percentage feature encountered an error. Does the scoreboard look normal?", ex);
+                return s;
             }
 
             double percent = 100 * num / den;
