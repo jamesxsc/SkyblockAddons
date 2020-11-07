@@ -155,8 +155,10 @@ public class Utils {
 
     private long lastDamaged = -1;
 
+    @Getter
     private EnumUtils.SlayerQuest slayerQuest;
     private int slayerQuestLevel = 1;
+    @Getter
     private boolean slayerBossAlive;
 
     private SkyblockAddons main = SkyblockAddons.getInstance();

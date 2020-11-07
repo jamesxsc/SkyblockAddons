@@ -173,6 +173,7 @@
     "disableBossMessages": "Disable Boss Messages",
     "hideOtherPlayersPresents": "Hide Other Player's Presents",
     "easierPresentOpening": "Open Presents Easier",
+    "slayerPercentage": "Show Slayer Progress As Percentage",
     "showSwordKills": "Show Sword Kills"
   },
   "messages": {

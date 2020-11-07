@@ -4,10 +4,7 @@ import codes.biscuit.skyblockaddons.asm.utils.TransformerClass;
 import codes.biscuit.skyblockaddons.asm.utils.TransformerMethod;
 import codes.biscuit.skyblockaddons.tweaker.transformer.ITransformer;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.*;
 
 import java.util.Iterator;
 
@@ -15,29 +12,36 @@ public class GuiIngameTransformer implements ITransformer {
 
     @Override
     public String[] getClassName() {
-        testPrint();
         return new String[]{TransformerClass.GuiIngame.getTransformerName()};
-    }
-
-    public static void testPrint() {
-        System.out.println("TEST PRINT - TRANSFORMER WORKING!");
     }
 
     @Override
     public void transform(ClassNode classNode, String name) {
-        testPrint();
         for (MethodNode methodNode : classNode.methods) {
             if (TransformerMethod.renderScoreboard.matches(methodNode)) {
 
                 Iterator<AbstractInsnNode> iterator = methodNode.instructions.iterator();
-                methodNode.instructions.insertBefore(iterator.next(), new MethodInsnNode(Opcodes.INVOKESTATIC, "codes/biscuit/skyblockaddons/asm/GuiIngameTransformer", "testPrint", "()V", false));
                 while (iterator.hasNext()) {
                     AbstractInsnNode abstractNode = iterator.next();
 
-                    System.out.println(abstractNode.getClass().getCanonicalName());
+                    if ((abstractNode instanceof LineNumberNode && ((LineNumberNode) abstractNode).line == 584)) {
+
+                        methodNode.instructions.insertBefore(abstractNode, insertSlayerPercentage());
+                    }
                 }
             }
         }
+    }
+
+    private InsnList insertSlayerPercentage() {
+        InsnList list = new InsnList();
+
+        list.add(new VarInsnNode(Opcodes.ALOAD, 15)); // string with playername
+        list.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "codes/biscuit/skyblockaddons/asm/hooks/GuiIngameHook", "insertSlayerPercentage",
+                "(Ljava/lang/String;)Ljava/lang/String;", false));
+        list.add(new VarInsnNode(Opcodes.ASTORE, 15));
+
+        return list;
     }
 
 }
